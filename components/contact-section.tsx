@@ -20,12 +20,11 @@ export default function ContactSection() {
     })
   }
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus("idle")
 
-    // Validate required fields
     if (!formState.name || !formState.email || !formState.subject || !formState.message) {
       setSubmitStatus("error")
       setIsSubmitting(false)
@@ -34,16 +33,26 @@ export default function ContactSection() {
     }
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "7f9c82b1-3848-4df4-a314-4a85a3346b4a", // Replace with your Web3Forms access key
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+        }),
       })
 
-      if (res.ok) {
+      const data = await res.json()
+
+      if (data.success) {
         setSubmitStatus("success")
         setFormState({ name: "", email: "", subject: "", message: "" })
-        setTimeout(() => setSubmitStatus("idle"), 5000)
       } else {
         setSubmitStatus("error")
         setTimeout(() => setSubmitStatus("idle"), 3000)
@@ -54,6 +63,7 @@ export default function ContactSection() {
       setTimeout(() => setSubmitStatus("idle"), 3000)
     } finally {
       setIsSubmitting(false)
+      setTimeout(() => setSubmitStatus("idle"), 5000)
     }
   }
 
@@ -111,7 +121,7 @@ export default function ContactSection() {
             </a>
 
             <a 
-              href="mailto:umeshwandhare19@gmail.com"
+              href="mailto:ketulbolane94@gmail.com"
               className="group flex items-start gap-4 p-4 sm:p-5 bg-gradient-to-br from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/15 rounded-2xl border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
             >
               <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
@@ -143,7 +153,7 @@ export default function ContactSection() {
                   Address
                 </h3>
                 <p className="text-primary/70 text-sm sm:text-base">
-                  Nagpur, Maharashtra<br />India 441106
+                FLAT NO. 103, 104, LAXMIVIHAR APARTMENT, BESIDE HOTEL AIRPORT CENTER POINT, WARDHA ROAD, SOMALWADA, NAGPUR-440025
                 </p>
               </div>
             </div>
@@ -177,7 +187,10 @@ export default function ContactSection() {
                   <p className="text-primary/60 text-sm sm:text-base">We'll get back to you as soon as possible.</p>
                 </div>
               ) : (
-                <div className="space-y-4 sm:space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                  <input type="hidden" name="from_name" value="Contact Form Website" />
+                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+
                   {/* Name and Email Row */}
                   <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
@@ -259,8 +272,7 @@ export default function ContactSection() {
 
                   {/* Submit Button */}
                   <button
-                    type="button"
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={isSubmitting}
                     className="w-full px-6 py-3.5 sm:py-4 bg-primary hover:bg-primary/90 text-white rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all hover:shadow-lg hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
@@ -288,7 +300,7 @@ export default function ContactSection() {
                       <span className="text-xs text-primary/70">Free Consultation</span>
                     </div>
                   </div>
-                </div>
+                </form>
               )}
             </div>
           </div>
