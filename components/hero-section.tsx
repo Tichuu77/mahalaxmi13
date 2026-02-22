@@ -1,168 +1,169 @@
-"use client"
+'use client';
+import React, { useState, useEffect } from 'react';
+ 
 
-import { useEffect, useState } from "react"
-import { ArrowRight, MapPin, Award, TrendingUp } from "lucide-react"
+ 
 
-export function HeroSection() {
-  const [isLoaded, setIsLoaded] = useState(false)
+export default function HeroSection() {
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
-
-  const handleScrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/hero-bg.jpeg" // Replace with your image path
-          alt="Mahalaxmi Infra background"
-          className="w-full h-full object-cover"
-          style={{ filter: 'brightness(0.9)' }}
-        />
-        {/* Fallback gradient if image fails to load */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#30534A] via-[#2a453d] to-[#1f3530]" style={{ zIndex: -1 }} />
-      </div>
+    <>
+   
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 pointer-events-none z-[1]" />
-
-      {/* Decorative blobs */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-[1]">
-        <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-[#C9862b]/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-[#30534A]/30 rounded-full blur-3xl"></div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-        <div className="text-center max-w-5xl mx-auto">
-          {/* Main Heading */}
-          <div
-            className={`transition-all duration-700 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-              Build Your Dream Home With{" "}
-              <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9862b] via-[#30534A] to-[#C9862b]">
-                  Mahalaxmi Infra
-                </span>
-                <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#C9862b] via-[#30534A] to-[#C9862b] opacity-50 blur-sm"></div>
-              </span>
-            </h1>
-          </div>
-
-          {/* Subtitle */}
-          <div
-            className={`transition-all duration-700 delay-100 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white/95 mb-6 sm:mb-8 leading-relaxed">
-              Residential & Commercial Plots in Heart Of Nagpur
-            </h2>
-          </div>
-
-          {/* Certification Badge */}
-          <div
-            className={`transition-all duration-700 delay-200 inline-flex items-center gap-2 sm:gap-3 py-2.5 sm:py-3 px-4 sm:px-8 bg-gradient-to-r from-[#30534A] to-[#30534A]/90 rounded-full shadow-2xl mb-6 sm:mb-8 border border-white/20 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            <h3 className="text-xs sm:text-sm md:text-base text-white font-semibold tracking-wide">
-              NMRDA SANCTION | RERA APPROVED PROJECTS
-            </h3>
-            <Award className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-          </div>
-
-          {/* Location Info */}
-          <div
-            className={`transition-all duration-700 delay-300 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <div className="inline-flex items-start gap-2 sm:gap-3 bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 max-w-4xl">
-              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-[#C9862b] flex-shrink-0 mt-0.5" />
-              <p className="text-sm sm:text-base md:text-lg text-white/90 text-left leading-relaxed">
-                <span className="font-semibold text-white">Prime Locations:</span> Besa, Beltarodi, Shankarpur, Wardha Road, Jamtha, Katol Road, Umred Road, Koradi Road & Samruddhi Circle Nagpur
-              </p>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div
-            className={`transition-all duration-700 delay-400 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 px-4 sm:px-0 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <button
-              onClick={() => handleScrollToSection("contact")}
-              className="group px-6 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-[#30534A] to-[#30534A]/90 hover:from-[#30534A]/90 hover:to-[#30534A] text-white rounded-xl font-bold text-sm sm:text-base transition-all duration-300 flex items-center justify-center gap-2 shadow-2xl hover:shadow-[#30534A]/50 hover:scale-105 border border-white/20"
-            >
-              Contact Us Now
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button
-              onClick={() => handleScrollToSection("projects")}
-              className="px-6 sm:px-10 py-3.5 sm:py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-xl font-bold text-sm sm:text-base transition-all duration-300 border-2 border-white/30 hover:scale-105 hover:border-[#C9862b]/70 shadow-lg"
-            >
-              Explore Projects
-            </button>
-          </div>
-
-          {/* Investment Highlight */}
-          <div
-            className={`transition-all duration-700 delay-500 inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#C9862b] to-[#C9862b]/90 py-3 sm:py-4 px-4 sm:px-8 rounded-full shadow-2xl border border-white/20 ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            <h3 className="text-white text-xs sm:text-sm md:text-base font-bold">
-              Best Investment Opportunity @ ₹22 Lakh Only on Samruddhi Circle
-            </h3>
-          </div>
-
-          {/* Stats Row */}
-          <div
-            className={`transition-all duration-700 delay-600 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 mt-8 sm:mt-12 max-w-3xl mx-auto ${
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C9862b] mb-1">70+</div>
-              <div className="text-xs sm:text-sm text-white/80">Projects</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C9862b] mb-1">17000+</div>
-              <div className="text-xs sm:text-sm text-white/80">Happy Clients</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C9862b] mb-1">100%</div>
-              <div className="text-xs sm:text-sm text-white/80">RERA Approved</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div
-        className={`absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10 transition-all duration-700 delay-700 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+      {/* Hero Section */}
+      <section
+        className="relative min-h-screen flex items-center overflow-hidden"
+        style={{
+          backgroundImage: 'url("/hero-bg.jpeg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+          paddingTop: '80px'
+        }}
       >
-        <div className="w-6 h-10 border-2 border-[#C9862b] rounded-full flex items-start justify-center p-2 bg-black/20 backdrop-blur-sm">
-          <div className="w-1.5 h-2 bg-[#C9862b] rounded-full" />
+        {/* Dark Overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, rgba(30, 80, 33, 0.35) 0%, rgba(30, 55, 15, 0.39) 50%, rgba(27, 70, 25, 0.39) 100%)'
+          }}
+        ></div>
+
+        {/* Content */}
+        <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 relative z-10">
+          <div className="max-w-3xl space-y-6 sm:space-y-8">
+
+            {/* Main Heading */}
+            <h1
+              className="font-bold leading-tight"
+              style={{
+                fontFamily: 'var(--font-heading)',
+                textShadow: '2px 2px 8px rgba(0,0,0,0.6)',
+                fontSize: 'clamp(2rem, 8vw, 4rem)',
+                lineHeight: '1.1',
+                letterSpacing: '0.01em',
+                color: 'var(--primary-foreground)'
+              }}
+            >
+              Mahalaxmi Nagar - 45
+            </h1>
+
+            {/* Stats Row */}
+            <div
+              className={`transition-all duration-700 delay-300 grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-8 ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+            >
+              <div className="bg-white/10  border border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 text-center">
+                <div 
+                  className="font-bold mb-1 sm:mb-2"
+                  style={{
+                    fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                    color: '#ffffff',
+                    fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  70+
+                </div>
+                <div 
+                  className="text-white/80"
+                  style={{
+                    fontSize: 'clamp(0.75rem, 2vw, 1rem)',
+                    fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  Projects
+                </div>
+              </div>
+              
+              <div className="bg-white/10  border border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 text-center">
+                <div 
+                  className="font-bold mb-1 sm:mb-2"
+                  style={{
+                    fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                    color: '#ffffff',
+                    fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  17111+
+                </div>
+                <div 
+                  className="text-white/80"
+                  style={{
+                    fontSize: 'clamp(0.75rem, 2vw, 1rem)',
+                    fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  Happy Clients
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="pt-2 sm:pt-4">
+              <a href="#faq_sec">
+                <button
+                  className="rounded hover:cursor-pointer font-bold tracking-wide transition-all hover:scale-105 active:scale-95 shadow-lg uppercase w-full sm:w-auto touch-manipulation"
+                  style={{
+                    background: 'var(--secondary)',
+                    color: 'var(--foreground)',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'clamp(13px, 2.5vw, 16px)',
+                    padding: '14px 32px',
+                  }}
+                >
+                  Enquire Now
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Improve scroll behavior on mobile */
+        @media (max-width: 768px) {
+          section {
+            background-attachment: scroll !important;
+          }
+        }
+
+        /* Ensure touch targets are large enough */
+        @media (hover: none) and (pointer: coarse) {
+          button, a {
+            min-height: 44px;
+            min-width: 44px;
+          }
+        }
+      `}</style>
+    </>
+  );
 }
