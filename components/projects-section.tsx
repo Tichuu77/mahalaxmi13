@@ -12,9 +12,17 @@ type Project = {
   status: string
 }
 
+
 const projects = {
   ongoing: [
- 
+    {
+      id: 2,
+      title: "Mahalaxmi Nagar-31",
+      image: "/ongoingProject8.webp",
+      description: "Ready to move residential layout on Besa-Pipla Road, opposite Zudio & Croma. Prime location with up to 90% bank finance.",
+      location: "MOUZA - BESA",
+      status: "ongoing"
+    },
     {
       id: 3,
       title: "Mahalaxmi Nagar-39",
@@ -23,7 +31,14 @@ const projects = {
       location: "MOUZA - FETRI",
       status: "ongoing"
     },
-  
+    {
+      id: 4,
+      title: "Mahalaxmi Nagar-41",
+      image: "/ongoingProject3.webp",
+      description: "Premium layout near Samruddhi Mahamarg with clubhouse & swimming pool. NMRDA + RL approved. Up to 90% finance.",
+      location: "MOUZA - GOMGAON",
+      status: "ongoing"
+    },
     {
       id: 5,
       title: "Mahalaxmi Nagar - 42",
@@ -48,7 +63,7 @@ const projects = {
       location: "MOUZA - SUMTHANA",
       status: "ongoing"
     },
-      {
+    {
       id: 8,
       title: "Mahalaxmi Nagar - 46",
       image: "/ongoingProject11.webp",
@@ -56,23 +71,78 @@ const projects = {
       location: "MOUZA - SUMTHANA",
       status: "ongoing"
     },
-     {
+    {
       id: 9,
       title: "Tattva Apas",
       image: "/tatava apas.webp",
-      description: "Tattva Apas, by VCMI Constructions LLP, offers contemporary living with 100 + meticulously crafted apartments. Featuring amenities like landscaped gardens, play areas, and fitness centers, it fosters a vibrant social atmosphere. Seamlessly integrated with surroundings, the complex includes a sprawling public green space spanning 50,000 sq. ft. Emphasizing superior construction and modern aesthetics, Tattva Apas ensures a premium standard of living, ideal for convenience and community. It's more than just a residence; it's a sanctuary where residents thrive amidst modern comforts.",
+      description: "Tattva Apas offers contemporary living with 100+ meticulously crafted apartments. Featuring landscaped gardens, play areas, and fitness centers, it fosters a vibrant social atmosphere.",
       location: "MOUZA - BELTARODI",
       status: "ongoing"
     },
-    
+    {
+      id: 11,
+      title: "Mahalaxmi Nagar - 47",
+      image: "/ongoingProject12.jpg",
+      description: "New launch behind Haldiram & AM Cinema on Koradi Road. NMRDA & RL approved with 90% finance.",
+      location: "KORADI ROAD (Behind Haldiram)",
+      status: "ongoing"
+    }
   ],
+
   completed: [
- 
+    {
+      id: 12,
+      title: "Mahalaxmi Nagar - 37",
+      image: "/completedProject1.webp",
+      description: "NMRDA & RL sanctioned layout in Kotewada. 75-80% bank loan approved.",
+      location: "MOUZA - KOTEWADA",
+      status: "completed"
+    },
+    {
+      id: 13,
+      title: "Mahalaxmi Nagar - 35",
+      image: "/completedProject2.webp",
+      description: "Fully delivered premium layout with all amenities completed.",
+      location: "MOUZA - KOTEWADA",
+      status: "completed"
+    },
+    {
+      id: 14,
+      title: "Mahalaxmi Nagar - 34",
+      image: "/completedProject3.webp",
+      description: "Successfully delivered project with high appreciation value.",
+      location: "MOUZA - BAHADURA",
+      status: "completed"
+    }
   ],
+
   upcoming: [
-    
+    {
+      id: 15,
+      title: "Mahalaxmi Nagar - 48",
+      image: "/plotDef.avif",
+      description: "",
+      location: "",
+      status: "upcoming"
+    },
+    {
+      id: 16,
+      title: "Mahalaxmi Nagar - 49",
+      image: "/plotDef.avif",
+      description: "",
+      location: "",
+      status: "upcoming"
+    },
+    {
+      id: 17,
+      title: "Mahalaxmi Nagar - 50",
+      image: "/plotDef.avif",
+      description: "",
+      location: "",
+      status: "upcoming"
+    }
   ]
-}
+};
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isHovered, setIsHovered] = useState(false)

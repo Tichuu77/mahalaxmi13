@@ -116,7 +116,7 @@ export default function ContactSection() {
                 <p className="text-primary/70 group-hover:text-primary transition-colors text-sm sm:text-base">
                   +91 7620760052
                 </p>
-                <p className="text-primary/40 text-xs mt-1">Available Mon-Fri, 9am-6pm</p>
+                <p className="text-primary/40 text-xs mt-1">Available in 7 days & 24 hrs</p>
               </div>
             </a>
 
