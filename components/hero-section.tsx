@@ -114,7 +114,7 @@ export default function HeroSection() {
 
             {/* CTA Button */}
             <div className="pt-2 sm:pt-4">
-              <a href="#faq_sec">
+              <a href="#contact">
                 <button
                   className="rounded hover:cursor-pointer font-bold tracking-wide transition-all hover:scale-105 active:scale-95 shadow-lg uppercase w-full sm:w-auto touch-manipulation"
                   style={{

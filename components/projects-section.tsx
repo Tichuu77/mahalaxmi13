@@ -161,7 +161,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   const handleWhatsApp = () => {
     const message = `Hi, I'm interested in the project "${project.title}" located at ${project.location}. Could you share more details?`
-    const url = `https://wa.me/919579889398?text=${encodeURIComponent(message)}`
+    const url = `https://wa.me/917620760052?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }
 
