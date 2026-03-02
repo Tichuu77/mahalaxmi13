@@ -86,12 +86,20 @@ const projects = {
       description: "New launch behind Haldiram & AM Cinema on Koradi Road. NMRDA & RL approved with 90% finance.",
       location: "KORADI ROAD (Behind Haldiram)",
       status: "ongoing"
-    }
+    },
+     {
+      id: 12,
+      title: "Mahalaxmi Nagar - 49",
+      image: "/plotDef.avif",
+      description: "",
+      location: "",
+      status: "ongoing"
+    },
   ],
 
   completed: [
     {
-      id: 12,
+      id: 13,
       title: "Mahalaxmi Nagar - 37",
       image: "/completedProject1.webp",
       description: "NMRDA & RL sanctioned layout in Kotewada. 75-80% bank loan approved.",
@@ -99,7 +107,7 @@ const projects = {
       status: "completed"
     },
     {
-      id: 13,
+      id: 14,
       title: "Mahalaxmi Nagar - 35",
       image: "/completedProject2.webp",
       description: "Fully delivered premium layout with all amenities completed.",
@@ -107,7 +115,7 @@ const projects = {
       status: "completed"
     },
     {
-      id: 14,
+      id: 15,
       title: "Mahalaxmi Nagar - 34",
       image: "/completedProject3.webp",
       description: "Successfully delivered project with high appreciation value.",
@@ -118,16 +126,8 @@ const projects = {
 
   upcoming: [
     {
-      id: 15,
-      title: "Mahalaxmi Nagar - 48",
-      image: "/plotDef.avif",
-      description: "",
-      location: "",
-      status: "upcoming"
-    },
-    {
       id: 16,
-      title: "Mahalaxmi Nagar - 49",
+      title: "Mahalaxmi Nagar - 48",
       image: "/plotDef.avif",
       description: "",
       location: "",
